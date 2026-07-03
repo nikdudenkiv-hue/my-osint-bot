@@ -8,7 +8,7 @@ from aiogram.filters import Command
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 
 # Токен берется из переменных окружения хостинга (для безопасности)
-BOT_TOKEN = os.getenv("8521713841:AAFjx-EbRnM8FyLJJSPK_s10dV9NGrJFmrg")
+BOT_TOKEN = "8521713841:AAFjx-EbRnM8FyLJJSPK_s10dV9NGrJFmrg"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
