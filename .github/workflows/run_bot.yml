@@ -1,7 +1,7 @@
 name: Run OSINT Bot
 
 on:
-  workflow_dispatch: # Позволяет запускать бота вручную кнопкой
+  workflow_dispatch: # Ручной запуск кнопкой
 
 jobs:
   run-bot:
@@ -20,7 +20,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Bot
+    - name: Run Bot with Timeout
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-      run: python bot.py
+        # Разрешаем запуск устаревших экшенов, если гитхаб ругается на Node
+        ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+      # timeout-minutes не даст гитхабу выдать аварийный exit code 1 при долгой работе
+      timeout-minutes: 30 
+      run: |
+        echo "Запуск OSINT бота..."
+        python bot.py
